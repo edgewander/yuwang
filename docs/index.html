@@ -147,8 +147,16 @@
   .app-nav .map-link:hover { background: rgba(200,0,30,0.08) !important; }
 
   /* CONTENT */
-  .content { padding-top: 0 !important; margin-top: 0 !important; margin-left: var(--sidebar-w) !important; }
-  #main { padding-top: 48px !important; }
+  .content { transition: none !important; }
+  .content, #main {
+    position: absolute !important;
+    top: 48px !important;
+    left: var(--sidebar-w) !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    overflow-y: auto !important;
+    height: auto !important;
+  }
   .markdown-section {
     max-width: 760px !important;
     margin: 0 auto !important;
