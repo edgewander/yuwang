@@ -1,4 +1,4 @@
-![狱望](images/logo.jpg)# 狱望 Prison Art
+![狱望](/images/logo.jpg)# 狱望 Prison Art
 
 > 汇集监狱与人文艺术相关的内容，探讨**人性、救赎与自由**。
 
