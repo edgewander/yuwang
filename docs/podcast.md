@@ -6,38 +6,41 @@
   <p style="color:#666; font-style:italic;">加载中……</p>
 </div>
 
-<a href="https://www.xiaoyuzhoufm.com/podcast/ry77fdfyrkwt" target="_blank" style="display:inline-block; margin-top:16px; color:#c8001e; font-size:13px;">→ 在小宇宙订阅狱望播客</a>
+<a href="https://www.xiaoyuzhoufm.com/podcast/621cf7fe27b4cb4fefc0045e" target="_blank" style="display:inline-block; margin-top:16px; color:#c8001e; font-size:13px;">→ 在小宇宙订阅狱望播客</a>
 
 <script>
 (function() {
   var rss = 'https://feed.xyzfm.space/ry77fdfyrkwt';
-  var api = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rss);
-  
-  fetch(api)
+  var proxy = 'https://api.allorigins.win/get?url=' + encodeURIComponent(rss);
+
+  fetch(proxy)
     .then(function(r) { return r.json(); })
     .then(function(data) {
+      var parser = new DOMParser();
+      var xml = parser.parseFromString(data.contents, 'text/xml');
+      var items = xml.querySelectorAll('item');
       var container = document.getElementById('podcast-list');
-      if (!data.items || data.items.length === 0) {
+      if (!items.length) {
         container.innerHTML = '<p style="color:#666;">暂无节目</p>';
         return;
       }
       var html = '';
-      data.items.forEach(function(item) {
-        var date = item.pubDate ? item.pubDate.slice(0, 10) : '';
-        var desc = item.description
-          ? item.description.replace(/<[^>]+>/g, '').slice(0, 120) + '…'
-          : '';
+      items.forEach(function(item) {
+        var title = item.querySelector('title') ? item.querySelector('title').textContent : '';
+        var link = item.querySelector('link') ? item.querySelector('link').textContent : '#';
+        var pubDate = item.querySelector('pubDate') ? item.querySelector('pubDate').textContent.slice(0, 16) : '';
+        var desc = item.querySelector('description') ? item.querySelector('description').textContent.replace(/<[^>]+>/g, '').trim().slice(0, 120) + '…' : '';
         html += '<div style="border-top:1px solid #2a2520; padding:20px 0;">';
-        html += '<div style="font-family:Space Mono,monospace; font-size:10px; color:#555; margin-bottom:6px;">' + date + '</div>';
-        html += '<a href="' + item.link + '" target="_blank" style="font-size:16px; font-weight:600; color:#f0ebe0; text-decoration:none; border:none;">' + item.title + '</a>';
-        html += '<p style="font-size:13px; color:#888; line-height:1.8; margin:8px 0 0;">' + desc + '</p>';
+        html += '<div style="font-family:monospace; font-size:11px; color:#555; margin-bottom:6px;">' + pubDate + '</div>';
+        html += '<a href="' + link + '" target="_blank" style="font-size:15px; font-weight:600; color:#f0ebe0; text-decoration:none; border:none;">' + title + '</a>';
+        if (desc) html += '<p style="font-size:13px; color:#888; line-height:1.8; margin:8px 0 0;">' + desc + '</p>';
         html += '</div>';
       });
       container.innerHTML = html;
     })
     .catch(function() {
-      document.getElementById('podcast-list').innerHTML = 
-        '<p style="color:#666;">加载失败，请直接访问 <a href="https://www.xiaoyuzhoufm.com/podcast/ry77fdfyrkwt" target="_blank" style="color:#c8001e;">小宇宙</a> 收听。</p>';
+      document.getElementById('podcast-list').innerHTML =
+        '<p style="color:#666;">加载失败，请直接访问 <a href="https://www.xiaoyuzhoufm.com/podcast/621cf7fe27b4cb4fefc0045e" target="_blank" style="color:#c8001e;">小宇宙</a> 收听。</p>';
     });
 })();
 </script>
