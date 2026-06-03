@@ -230,10 +230,55 @@
     transition: width 0.1s;
   }
 
+  /* CATEGORY GRID (8 blocks) */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .cat-card {
+    display: block;
+    background: #1a1612;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 20px 16px;
+    text-align: center;
+    text-decoration: none !important;
+    border-bottom: none !important;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .cat-card:hover {
+    border-color: var(--red);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(200,0,30,0.1);
+    background: #1e1a16;
+  }
+  .cat-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  .cat-name {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--paper);
+    margin-bottom: 4px;
+    letter-spacing: 0.04em;
+  }
+  .cat-desc {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.5;
+  }
+
   /* MOBILE */
   @media (max-width: 768px) {
     .app-nav { left: 0 !important; }
     .markdown-section { padding: 28px 20px 60px !important; }
+    .cat-grid { grid-template-columns: 1fr; gap: 8px; }
+    .cat-card { padding: 16px 12px; }
   }
   </style>
 </head>
