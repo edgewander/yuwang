@@ -31,21 +31,13 @@
 
 国内现存的狱神庙有：
 
-1. 山西洪洞苏三监狱狱神庙：洪洞苏三监狱内，在虎头牢对面，墙内嵌一砂石雕刻的神龛，内供三尊砖刻小像。正中为狱神皋陶，两侧胁侍皂隶小鬼。该监狱始建于明洪武二年，1970年代被拆毁，但狱神庙的神龛、墙基等得以保留，1984年按明制原址修复。![](图片链接)
-
-![Image](https://mmbiz.qpic.cn/mmbiz_jpg/7kxWlQYlozYRiaNASZvJbDa6RdSOV07Mzuq6H46swFpKw11L9wExxNZtsepSR6iaKyT3Dria7szMJpmDtVvngveURn0uagSTqFIKtwwjQxVnoc/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=0)
+1. 山西洪洞苏三监狱狱神庙：洪洞苏三监狱内，在虎头牢对面，墙内嵌一砂石雕刻的神龛，内供三尊砖刻小像。正中为狱神皋陶，两侧胁侍皂隶小鬼。该监狱始建于明洪武二年，1970年代被拆毁，但狱神庙的神龛、墙基等得以保留，1984年按明制原址修复。
 
 2. 河南内乡县衙狱神庙：位于内乡县衙监狱区，主祀皋陶。
 
-![Image](https://mmbiz.qpic.cn/mmbiz_jpg/7kxWlQYlozauaictVkLJlNSXpwgWCroGicQ1ga3gI6JoUBoX9icsaTOiasoHiahuMR2SAdicyIQleGebcMqsFbyico3Ck1TibwDXLMwMuL05N8U5hia0/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=1)
-
 3. 山西榆次县衙狱神堂：位于榆次县衙监狱内，主祀亚孻并配衙役侍从，建筑为明清风格。
 
-![Image](https://mmbiz.qpic.cn/mmbiz_jpg/7kxWlQYlozZO0FWQQX0mvZMx4kycicnhzJzOk28zJC8RMia2icscblaXnMribpibuJfnspicewWeybN3FsPLE89YFnEm8xcleOoC1ibldjz7Yice6uI/640?wx_fmt=jpeg&from=appmsg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=2)
-
 4. 密县县衙狱神庙：位于密县县衙内，始建于隋代，历代屡毁屡修，主体留存为明清形制，主祀皋陶。
-
-![Image](https://mmbiz.qpic.cn/sz_mmbiz_jpg/7kxWlQYlozY8ichqAGIXv4XEUE9f3uKkl3m2p0sRhLSu6ibicrVkicvoYnYggy2jORKgnQRicFzFAPk1LZPvOrRI2ruLcBomo3no3I0T9qzcxkp4/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1#imgIndex=3)
 
 5. 河北河间府署狱神庙：位于沧州河间府署监狱院内，始建于明代，清代多次修缮，主祀皋陶，现建筑为2013 年按明清形制复建而成。
 
@@ -57,4 +49,4 @@
 
 9. 河南商丘永城夫子山狱神庙：位于永城夫子山景区内，主祀萧何，为景区复建建筑。
 
-10. 景德镇市浮梁古县衙狱神庙，本体道光建，2007 年复建。主祀皋陶。![[Pasted image 20260603200619.png]]
+10. 景德镇市浮梁古县衙狱神庙，本体道光建，2007 年复建。主祀皋陶。
