@@ -50,11 +50,18 @@
     display: block !important;
   }
   .app-name-link {
-    display: block !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
     text-decoration: none !important;
+    gap: 10px !important;
   }
-  .app-name-link::before {
-    content: '狱望';
+  .app-name-link img {
+    width: 96px !important;
+    height: auto !important;
+    display: block !important;
+  }
+  .app-name-link .site-title {
     display: block;
     font-family: var(--font-display);
     font-size: 36px;
@@ -63,14 +70,13 @@
     line-height: 1;
     letter-spacing: -0.02em;
   }
-  .app-name-link::after {
-    content: 'PRISON ART';
+  .app-name-link .site-sub {
     display: block;
     font-family: var(--font-mono);
     font-size: 9px;
     letter-spacing: 0.25em;
     color: #444;
-    margin-top: 6px;
+    margin-top: -4px;
   }
   .search {
     margin: 0 !important;
@@ -251,7 +257,7 @@
     });
 
     window.$docsify = {
-      name: '狱望',
+      name: '<img src="images/logo.jpg" alt="狱望logo" style="width:96px;height:auto;display:block;"><span class="site-title">狱望</span><span class="site-sub">PRISON ART</span>',
       nameLink: '/',
       loadSidebar: true,
       subMaxLevel: 2,
