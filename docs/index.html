@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>狱望 Prison Art</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="汇集监狱与人文艺术相关的内容，探讨人性、救赎、自由。">
+  <meta name="description" content="汇集监狱与人文艺术相关的内容，探讨人性、救赎与自由。">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Serif+SC:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -157,7 +157,7 @@
     overflow-y: auto !important;
   }
   .markdown-section {
-    max-width: 100% !important;
+    max-width: 860px !important;
     margin: 0 40px !important;
     padding: 48px 48px 80px !important;
     color: #ccc !important;
@@ -193,15 +193,16 @@
   }
   .markdown-section h3 { font-size: 17px !important; color: #bbb !important; margin: 28px 0 12px !important; }
   .markdown-section p { margin: 0 0 20px !important; color: #ccc !important; }
-  .markdown-section a { color: #e8334a !important; text-decoration: none !important; border-bottom: 1px solid rgba(232,51,74,0.3) !important; transition: border-color 0.15s !important; }
-  .markdown-section a:hover { border-bottom-color: #e8334a !important; }
+  .markdown-section a { color: #d4b896 !important; text-decoration: none !important; border-bottom: 1px solid rgba(212,184,150,0.25) !important; transition: color 0.15s, border-color 0.15s !important; }
+  .markdown-section a:hover { color: #f0ebe0 !important; border-bottom-color: #d4b896 !important; }
   .markdown-section blockquote {
     border-left: 3px solid var(--red) !important;
     background: #1a1612 !important;
-    margin: 24px 0 !important;
-    padding: 16px 20px !important;
+    margin: 24px auto !important;
+    padding: 14px 20px !important;
     color: #bbb !important;
     font-style: italic !important;
+    max-width: 560px !important;
   }
   .markdown-section img { max-width: 100% !important; height: auto !important; display: block !important; margin: 28px auto !important; }
   .markdown-section hr { border: none !important; border-top: 1px solid var(--rule) !important; margin: 40px 0 !important; }
@@ -230,55 +231,10 @@
     transition: width 0.1s;
   }
 
-  /* CATEGORY GRID (8 blocks) */
-  .cat-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin: 24px 0;
-  }
-  .cat-card {
-    display: block;
-    background: #1a1612;
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 20px 16px;
-    text-align: center;
-    text-decoration: none !important;
-    border-bottom: none !important;
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-  .cat-card:hover {
-    border-color: var(--red);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(200,0,30,0.1);
-    background: #1e1a16;
-  }
-  .cat-icon {
-    font-size: 28px;
-    margin-bottom: 8px;
-  }
-  .cat-name {
-    font-family: var(--font-serif);
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--paper);
-    margin-bottom: 4px;
-    letter-spacing: 0.04em;
-  }
-  .cat-desc {
-    font-size: 11px;
-    color: #666;
-    line-height: 1.5;
-  }
-
   /* MOBILE */
   @media (max-width: 768px) {
     .app-nav { left: 0 !important; }
     .markdown-section { padding: 28px 20px 60px !important; }
-    .cat-grid { grid-template-columns: 1fr; gap: 8px; }
-    .cat-card { padding: 16px 12px; }
   }
   </style>
 </head>
@@ -299,7 +255,7 @@
       name: '狱望',
       nameLink: '/',
       loadSidebar: true,
-      subMaxLevel: 0,
+      subMaxLevel: 2,
       search: {
         placeholder: '搜索文章…',
         noData: '没有找到相关内容',
