@@ -1,10 +1,10 @@
 <!-- docs/_sidebar.md -->
 
 * [首页](/)
-* [播客](podcast.md)
 
 ---
 
+* [播客](podcast.md)
 * [艺术介入监狱](cat-art.md)
 * [监狱摄影](cat-photo.md)
 * [监狱绘画](cat-painting.md)
