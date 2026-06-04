@@ -2,7 +2,6 @@
 
 * [首页](/)
 * [播客](podcast.md)
-* [我的监狱情结](jianyuqingjie.md)
 
 ---
 
