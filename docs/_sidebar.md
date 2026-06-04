@@ -16,5 +16,3 @@
 * [杂谈](cat-misc.md)
 
 ---
-
-* [说说狱神庙](yushenmiao.md)
