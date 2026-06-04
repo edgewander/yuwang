@@ -1,5 +1,5 @@
-<!-- docs/_sidebar.md -->
 <img src="images/logo.jpg" style="width:120px;display:block;margin:0 auto 20px auto;">
+<!-- docs/_sidebar.md -->
 
 * [首页](/)
 * [播客](podcast.md)
