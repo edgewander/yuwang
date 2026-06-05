@@ -1,4 +1,3 @@
-<img src="images/logo.jpg" style="width:120px;display:block;margin:20px 0 20px 20px;">
 <!-- docs/_sidebar.md -->
 
 * [首页](/)
