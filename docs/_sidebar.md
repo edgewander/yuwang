@@ -2,7 +2,6 @@
 <!-- docs/_sidebar.md -->
 
 * [首页](/)
-* [播客](podcast.md)
 
 ---
 
@@ -14,5 +13,5 @@
 * [监狱历史](cat-history.md)
 * [监狱音乐](cat-music.md)
 * [杂谈](cat-misc.md)
-
+* [播客](podcast.md)
 ---
