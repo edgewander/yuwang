@@ -1,8 +1,8 @@
+<img src="images/logo.jpg" style="width:120px;display:block;margin:20px 0 20px 20px;">
 <!-- docs/_sidebar.md -->
 
 * [首页](/)
 * [播客](podcast.md)
-* [我的监狱情结](jianyuqingjie.md)
 
 ---
 
@@ -16,5 +16,3 @@
 * [杂谈](cat-misc.md)
 
 ---
-
-* [说说狱神庙](yushenmiao.md)

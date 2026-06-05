@@ -24,3 +24,12 @@
 ## 爵士与现场
 
 - [关于一场爵士演出](9.25.md)
+
+## 新增
+
+- [Charlie Manson](6.5.md)
+- [图瓦传奇歌手Vladimir Oidupaa](6.6.md)
+- [巴厘岛Antrabez乐队](6.7.md)
+- [THE PRISONAIRES](6.8.md)
+- [Jail Time Records](6.9.md)
+- [优人神鼓X彰监鼓艺计划](6.10.md)

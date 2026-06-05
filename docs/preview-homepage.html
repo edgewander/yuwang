@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>狱望 Prison Art - 首页预览</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Serif+SC:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+  *, *::before, *::after { box-sizing: border-box; }
+  :root {
+    --red: #c8001e;
+    --ink: #0e0c0b;
+    --ink2: #161310;
+    --paper: #f0ebe0;
+    --grey: #888;
+    --rule: #2a2520;
+    --font-serif: 'Noto Serif SC', 'Songti SC', serif;
+    --font-display: 'Playfair Display', serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-serif);
+  }
+
+  /* SIDEBAR */
+  .preview-sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 300px;
+    height: 100vh;
+    background: #0a0806;
+    border-right: 1px solid var(--rule);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+  }
+  .preview-sidebar .app-name {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .preview-sidebar .app-name-link {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-decoration: none;
+    gap: 10px;
+  }
+  .preview-sidebar .app-name-link img {
+    width: 96px; height: auto; display: block;
+  }
+  .preview-sidebar .site-title {
+    font-family: var(--font-display);
+    font-size: 36px; font-weight: 900;
+    color: var(--red); line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .preview-sidebar .site-sub {
+    font-family: var(--font-mono);
+    font-size: 9px; letter-spacing: 0.25em;
+    color: #444; margin-top: -4px;
+  }
+  .preview-sidebar .nav-links {
+    padding: 12px 0; flex: 1; overflow-y: auto;
+  }
+  .preview-sidebar .nav-links a {
+    display: block; padding: 7px 24px;
+    font-size: 13px; color: #777;
+    text-decoration: none; letter-spacing: 0.04em;
+  }
+  .preview-sidebar .nav-links a:hover { color: var(--paper); }
+
+  /* TOP NAV */
+  .preview-topnav {
+    position: fixed;
+    top: 0; left: 300px; right: 0;
+    height: 48px;
+    background: var(--ink);
+    border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center;
+    padding: 0 28px; gap: 24px;
+    justify-content: flex-end; z-index: 9;
+  }
+  .preview-topnav a {
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.12em;
+    color: #666; text-decoration: none;
+    text-transform: uppercase;
+  }
+  .preview-topnav .map-link {
+    color: var(--red);
+    border: 1px solid rgba(200,0,30,0.35);
+    padding: 5px 14px; border-radius: 2px;
+  }
+
+  /* MAIN */
+  .preview-main {
+    margin-left: 300px; padding-top: 48px;
+  }
+  .markdown-section {
+    max-width: 860px; margin: 0 40px;
+    padding: 48px 48px 80px;
+    color: #ccc; font-size: 16px; line-height: 2;
+  }
+  .markdown-section h1 {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3.5vw, 38px);
+    font-weight: 700; color: var(--paper);
+    line-height: 1.3; margin: 0 0 8px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .markdown-section h1::before {
+    content: ''; display: block;
+    height: 3px; width: 36px;
+    background: var(--red); margin-bottom: 18px;
+  }
+  .markdown-section blockquote {
+    border-left: 3px solid var(--red);
+    background: #1a1612;
+    margin: 24px auto; padding: 14px 20px;
+    color: #bbb; font-style: italic;
+    max-width: 560px;
+  }
+  .markdown-section a { color: #d4b896; text-decoration: none; border-bottom: 1px solid rgba(212,184,150,0.25); }
+
+  /* Category grid styles from 00.md */
+  .cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #2a2520; }
+  .cat-grid > div { background: #161310; padding: 24px; position: relative; }
+  .cat-grid .cat-line { position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 2px 2px 0 0; }
+  .cat-grid .cat-tag { font-size: 10px; letter-spacing: 0.2em; font-family: monospace; margin-bottom: 8px; }
+  .cat-grid .cat-title { font-size: 17px; font-weight: 700; color: #f0ebe0; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #2a2520; }
+  .cat-grid .cat-list { overflow-y: auto; max-height: 220px; }
+  .cat-grid .cat-list > div { border-top: 1px solid #1e1b18; padding: 8px 0; }
+  .cat-grid .cat-list a { color: #999; font-size: 13px; text-decoration: none; border: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .preview-sidebar { display: none; }
+    .preview-topnav { left: 0; }
+    .preview-main { margin-left: 0; }
+    .markdown-section { padding: 28px 20px 60px; }
+    .cat-grid { grid-template-columns: 1fr; }
+  }
+
+  .preview-badge {
+    position: fixed; top: 60px; left: 310px;
+    background: var(--red); color: white;
+    font-size: 11px; padding: 4px 12px;
+    border-radius: 0 0 4px 0;
+    z-index: 100; font-family: var(--font-mono);
+    letter-spacing: 0.1em;
+  }
+  </style>
+</head>
+<body>
+
+<div class="preview-badge">PREVIEW 预览模式</div>
+
+<!-- Sidebar -->
+<div class="preview-sidebar">
+  <div class="app-name">
+    <a class="app-name-link" href="#">
+      <img src="images/logo.jpg" alt="狱望logo" style="width:96px;height:auto;display:block;">
+      <span class="site-title">狱望</span>
+      <span class="site-sub">PRISON ART</span>
+    </a>
+  </div>
+  <div class="nav-links">
+    <a href="#">首页</a><a href="#">播客</a>
+    <hr style="border:none;border-top:1px solid #2a2520;margin:8px 16px;">
+    <a href="#">艺术介入监狱</a><a href="#">监狱摄影</a><a href="#">监狱绘画</a><a href="#">监狱诗歌</a>
+    <a href="#">监狱旅游</a><a href="#">监狱历史</a><a href="#">监狱音乐</a><a href="#">杂谈</a>
+  </div>
+</div>
+
+<!-- Top Nav -->
+<div class="preview-topnav">
+  <a href="#">首页</a><a href="#">全部文章</a><a href="#" class="map-link">🗺 世界监狱地图</a>
+</div>
+
+<!-- Main Content -->
+<div class="preview-main">
+<div class="markdown-section">
+
+<h1>狱望 Prison Art</h1>
+<blockquote>汇集监狱与人文艺术相关的内容，探讨<strong>人性、救赎与自由</strong>。</blockquote>
+
+<div class="cat-grid">
+
+<div>
+<div class="cat-line" style="background:#c8001e;"></div>
+<div class="cat-tag" style="color:#c8001e;">ART INTERVENTION</div>
+<div class="cat-title">艺术介入监狱</div>
+<div class="cat-list">
+<div><a href="#">意大利沃尔特拉监狱重刑犯的戏梦人生</a></div>
+<div><a href="#">戈多在监狱</a></div>
+<div><a href="#">铁栏与面具之后：用戏剧影响囚犯</a></div>
+<div><a href="#">监狱吉他之门</a></div>
+<div><a href="#">委内瑞拉的音乐救助系统</a></div>
+<div><a href="#">监狱里的美术疗法</a></div>
+<div><a href="#">宗巴监狱项目</a></div>
+<div><a href="#">监狱中的瑜伽</a></div>
+</div>
+</div>
+
+<div>
+<div class="cat-line" style="background:#4a7c8c;"></div>
+<div class="cat-tag" style="color:#4a7c8c;">PHOTOGRAPHY</div>
+<div class="cat-title">监狱摄影</div>
+<div class="cat-list">
+<div><a href="#">马格南摄影师镜头里的监狱</a></div>
+<div><a href="#">监狱里的女性</a></div>
+<div><a href="#">监狱里的老年人</a></div>
+<div><a href="#">莉兹·萨丁摄影集《被惩罚的未成年人》</a></div>
+<div><a href="#">监狱里的精神病患者</a></div>
+<div><a href="#">丹尼·莱昂摄影集《和死亡对话》</a></div>
+<div><a href="#">Bruce Jackson作品</a></div>
+</div>
+</div>
+
+<div>
+<div class="cat-line" style="background:#b87333;"></div>
+<div class="cat-tag" style="color:#b87333;">PAINTING</div>
+<div class="cat-title">监狱绘画</div>
+<div class="cat-list">
+<div><a href="#">毕加索的蓝色时期与圣拉扎尔监狱</a></div>
+<div><a href="#">戈雅：画下怪诞时代的X光</a></div>
+<div><a href="#">被囚禁的库尔贝先生</a></div>
+<div><a href="#">埃贡·席勒的画与日记</a></div>
+</div>
+</div>
+
+<div>
+<div class="cat-line" style="background:#d4af37;"></div>
+<div class="cat-tag" style="color:#d4af37;">POETRY</div>
+<div class="cat-title">监狱诗歌</div>
+<div class="cat-list">
+<div><a href="#">瑶溪作品选</a></div>
+<div><a href="#">莫莫的诗</a></div>
+<div><a href="#">《铁窗的眼睛》林建隆俳句选</a></div>
+<div><a href="#">希克梅特《九点到十点的诗》</a></div>
+</div>
+</div>
+
+<div>
+<div class="cat-line" style="background:#8b4513;"></div>
+<div class="cat-tag" style="color:#8b4513;">HISTORY</div>
+<div class="cat-title">监狱历史</div>
+<div class="cat-list">
+<div><a href="#">清末狱政改革回望</a></div>
+<div><a href="#">西德尼·甘博镜头下的民国监狱</a></div>
+<div><a href="#">作为水上监狱的囚船</a></div>
+<div><a href="#">二战期间美国的日裔拘留营</a></div>
+</div>
+</div>
+
+<div>
+<div class="cat-line" style="background:#6b5b73;"></div>
+<div class="cat-tag" style="color:#6b5b73;">MUSIC</div>
+<div class="cat-title">监狱音乐</div>
+<div class="cat-list">
+<div><a href="#">20首与监狱相关的歌</a></div>
+<div><a href="#">永远的黑衣人</a></div>
+<div><a href="#">牢狱歌手枪肚皮</a></div>
+<div><a href="#">B.B. KING</a></div>
+</div>
+</div>
+
+<div>
+<div class="cat-line" style="background:#4a7c59;"></div>
+<div class="cat-tag" style="color:#4a7c59;">TRAVEL</div>
+<div class="cat-title">监狱旅游</div>
+<div class="cat-list">
+<div><a href="#">监狱旅游</a></div>
+<div><a href="#" style="color:#c8001e;">🗺 世界监狱博物馆地图 →</a></div>
+</div>
+</div>
+
+<div>
+<div class="cat-line" style="background:#7f8c8d;"></div>
+<div class="cat-tag" style="color:#7f8c8d;">MISCELLANEOUS</div>
+<div class="cat-title">杂谈</div>
+<div class="cat-list">
+<div><a href="#">世界监狱人口简报</a></div>
+<div><a href="#">我的监狱情结</a></div>
+<div><a href="#">农村青年成长史</a></div>
+<div><a href="#">X市监狱退役后的访记</a></div>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</body>
+</html>
