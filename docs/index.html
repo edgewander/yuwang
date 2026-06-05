@@ -238,8 +238,40 @@
 
   /* MOBILE */
   @media (max-width: 768px) {
+    /* Sidebar hidden by default on mobile */
+    .sidebar {
+      transform: translateX(-100%) !important;
+      transition: transform 0.3s ease !important;
+      z-index: 200 !important;
+      width: 280px !important;
+    }
+    .sidebar.open {
+      transform: translateX(0) !important;
+    }
+    /* Content full width */
+    .content, #main {
+      left: 0 !important;
+      top: 48px !important;
+    }
     .app-nav { left: 0 !important; }
-    .markdown-section { padding: 28px 20px 60px !important; }
+    .markdown-section {
+      padding: 28px 20px 60px !important;
+      margin: 0 !important;
+      max-width: 100% !important;
+    }
+    /* Sidebar toggle always visible on mobile */
+    .sidebar-toggle {
+      display: block !important;
+      z-index: 300 !important;
+    }
+    /* Overlay when sidebar is open */
+    body.sidebar-open::after {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 150;
+    }
   }
   </style>
 </head>
@@ -255,6 +287,33 @@
       var docHeight = document.documentElement.scrollHeight - window.innerHeight;
       el.style.width = (docHeight > 0 ? scrollTop / docHeight * 100 : 0) + '%';
     });
+
+    // Mobile sidebar toggle
+    (function() {
+      function initMobileSidebar() {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('.sidebar');
+        if (!toggle || !sidebar) return;
+        toggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          sidebar.classList.toggle('open');
+          document.body.classList.toggle('sidebar-open');
+        });
+        // Close sidebar when clicking overlay or content
+        document.addEventListener('click', function(e) {
+          if (sidebar.classList.contains('open') && !sidebar.contains(e.target) && !toggle.contains(e.target)) {
+            sidebar.classList.remove('open');
+            document.body.classList.remove('sidebar-open');
+          }
+        });
+      }
+      // Wait for docsify to render
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMobileSidebar);
+      } else {
+        setTimeout(initMobileSidebar, 500);
+      }
+    })();
 
     window.$docsify = {
       name: '<img src="images/logo.jpg" alt="狱望logo" style="width:96px;height:auto;display:block;"><span class="site-title">狱望</span><span class="site-sub">PRISON ART</span>',
