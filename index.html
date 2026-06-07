@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="汇集监狱与人文艺术相关的内容，探讨人性、救赎与自由。">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Serif+SC:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -257,7 +258,7 @@
     });
 
     window.$docsify = {
-      name: '<img src="Pasted image 20260603200619.png" alt="狱望logo"><span class="site-title">狱望</span><span class="site-sub">PRISON ART</span>',
+      name: '<img src="docs/logo.webp" alt="狱望logo"><span class="site-title">狱望</span><span class="site-sub">PRISON ART</span>',
       nameLink: '/',
       loadSidebar: true,
       subMaxLevel: 2,
@@ -284,7 +285,46 @@
       ]
     }
   </script>
-  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+  <script src="//unpkg.com/docsify@4/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/docsify@4/lib/plugins/search.min.js"></script>
+  <script>
+    // Lazy loading for dynamically rendered images
+    (function() {
+      function addLazyLoad(root) {
+        root.querySelectorAll('img:not([loading])').forEach(function(img) {
+          img.setAttribute('loading', 'lazy');
+          img.setAttribute('decoding', 'async');
+        });
+      }
+      // Observe Docsify dynamic content
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(m) {
+          m.addedNodes.forEach(function(node) {
+            if (node.nodeType === 1) {
+              if (node.matches && node.matches('.markdown-section')) {
+                addLazyLoad(node);
+              } else if (node.querySelectorAll) {
+                node.querySelectorAll('.markdown-section').forEach(addLazyLoad);
+              }
+            }
+          });
+        });
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+      // Also run on initial load
+      document.addEventListener('DOMContentLoaded', function() {
+        addLazyLoad(document.body);
+      });
+    })();
+
+    // Service Worker for offline caching
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').then(function(reg) {
+        console.log('SW registered:', reg.scope);
+      }).catch(function(err) {
+        console.log('SW registration failed:', err);
+      });
+    }
+  </script>
 </body>
 </html>

@@ -1,0 +1,20 @@
+{
+  "name": "狱望 Prison Art",
+  "short_name": "狱望",
+  "description": "汇集监狱与人文艺术相关的内容，探讨人性、救赎与自由。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0e0c0b",
+  "theme_color": "#c8001e",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "docs/logo.webp",
+      "sizes": "1080x662",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ]
+}
