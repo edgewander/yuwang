@@ -1,9 +1,12 @@
-const CACHE_NAME = 'prison-art-v1';
+const CACHE_NAME = 'prison-art-v2';
 const SHELL_ASSETS = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/sw.js'
+  '/sw.js',
+  '/sitemap.xml',
+  '/robots.txt',
+  '/docs/article-index.js'
 ];
 
 // Install: cache shell

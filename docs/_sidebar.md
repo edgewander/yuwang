@@ -14,3 +14,4 @@
 * [杂谈](cat-misc.md)
 * [播客](podcast.md)
 ---
+* [📝 投稿](contribute.md)

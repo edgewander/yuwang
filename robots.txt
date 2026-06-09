@@ -1,0 +1,11 @@
+# prison-art.cn
+User-agent: *
+Allow: /
+Sitemap: https://prison-art.cn/sitemap.xml
+
+# Block common bot paths
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /

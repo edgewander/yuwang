@@ -24,3 +24,8 @@ Icon
 #vscode 
 .vscode
 docs/images/yuwang.jpg
+
+# VitePress
+node_modules/
+vp-docs/.vitepress/dist/
+vp-docs/.vitepress/cache/

@@ -6,9 +6,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="汇集监狱与人文艺术相关的内容，探讨人性、救赎与自由。">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta name="keywords" content="监狱,监狱艺术,监狱博物馆,暗黑旅游,监狱文学,监狱历史,prison,prison art,prison museum">
+  <meta name="author" content="edgewander">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="狱望 Prison Art">
+  <meta property="og:title" content="狱望 Prison Art — 监狱与人文艺术">
+  <meta property="og:description" content="汇集监狱与人文艺术相关的内容，探讨人性、救赎与自由。">
+  <meta property="og:url" content="https://prison-art.cn/">
+  <meta property="og:image" content="https://prison-art.cn/docs/logo.webp">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@edgewander">
+  <link rel="canonical" href="https://prison-art.cn/">
   <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Serif+SC:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Waline 评论系统 -->
+  <link rel="stylesheet" href="//unpkg.com/@waline/client@3/dist/waline.css" />
   <style>
   *, *::before, *::after { box-sizing: border-box; }
   :root {
@@ -95,7 +109,7 @@
     padding: 8px 12px !important;
     width: 100% !important;
   }
-  .search input::placeholder { color: #555 !important; }
+  .search input::placeholder { color: #777 !important; }
   .search input:focus { border-color: var(--red) !important; outline: none !important; }
   .sidebar-nav ul { padding: 8px 0 !important; margin: 0 !important; }
   .sidebar-nav li { list-style: none !important; }
@@ -104,7 +118,7 @@
     padding: 7px 24px !important;
     font-family: var(--font-serif) !important;
     font-size: 13px !important;
-    color: #777 !important;
+    color: #888 !important;
     text-decoration: none !important;
     letter-spacing: 0.04em !important;
     transition: color 0.15s, background 0.15s !important;
@@ -116,7 +130,7 @@
     border-left-color: var(--red) !important;
   }
   .sidebar-nav ul ul { padding-left: 12px !important; }
-  .sidebar-nav ul ul a { font-size: 11px !important; color: #555 !important; padding: 3px 24px !important; }
+  .sidebar-nav ul ul a { font-size: 11px !important; color: #777 !important; padding: 3px 24px !important; }
 
   /* TOP NAV */
   .app-nav {
@@ -218,7 +232,7 @@
 
   /* SIDEBAR TOGGLE */
   .sidebar-toggle { background: var(--ink) !important; border-right: 1px solid var(--rule) !important; border-bottom: 1px solid var(--rule) !important; }
-  .sidebar-toggle span { background: #555 !important; }
+  .sidebar-toggle span { background: #777 !important; }
 
   /* SCROLLBAR */
   ::-webkit-scrollbar { width: 4px; }
@@ -239,12 +253,392 @@
 
   /* MOBILE */
   @media (max-width: 768px) {
-    .app-nav { left: 0 !important; }
-    .markdown-section { padding: 28px 20px 60px !important; }
+    :root { --sidebar-w: 0px; }
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+      z-index: 300 !important;
+    }
+    .sidebar.active {
+      transform: translateX(0);
+    }
+    .sidebar-toggle {
+      display: block !important;
+      z-index: 301 !important;
+    }
+    .app-nav {
+      left: 0 !important;
+      padding: 0 12px !important;
+      gap: 8px !important;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .app-nav a {
+      font-size: 10px !important;
+      padding: 4px 6px !important;
+      white-space: nowrap;
+    }
+    .app-nav .map-link {
+      padding: 3px 8px !important;
+      font-size: 9px !important;
+    }
+    .content, #main {
+      left: 0 !important;
+      top: 48px !important;
+    }
+    .markdown-section {
+      margin: 0 !important;
+      padding: 24px 16px 100px !important;
+      font-size: 15px !important;
+    }
+    .markdown-section h1 {
+      font-size: 24px !important;
+    }
+    .markdown-section h2 {
+      font-size: 18px !important;
+    }
+    .markdown-section img {
+      margin: 16px -4px !important;
+    }
+    .share-bar {
+      flex-wrap: wrap;
+      padding: 0 16px !important;
+      gap: 6px;
+    }
+    .share-bar .share-btn {
+      font-size: 10px !important;
+      padding: 5px 10px !important;
+    }
+    .waline-anchor {
+      padding: 0 16px !important;
+    }
+    .submit-form-wrap {
+      margin: 24px 16px;
+      padding: 24px 20px;
+    }
+    .related-reading {
+      margin: 32px 16px 0 !important;
+      padding: 24px 20px !important;
+    }
+    .related-reading .related-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .reading-progress {
+      top: 48px !important;
+    }
+    /* Hide sidebar overlay on non-toggle */
+    body:not(.close) .sidebar-toggle {
+      left: 0 !important;
+    }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    :root { --sidebar-w: 260px; }
+    .markdown-section {
+      padding: 36px 32px 60px !important;
+    }
+    .related-reading {
+      margin-left: 40px !important;
+      margin-right: 40px !important;
+    }
+  }
+
+  /* ===== COMMENTS (Waline) ===== */
+  .waline-anchor {
+    max-width: 860px;
+    margin: 40px auto 0;
+    padding: 0 48px;
+  }
+  @media (max-width: 768px) {
+    .waline-anchor { padding: 0 20px; }
+  }
+  #waline .wl-panel {
+    background: #161310 !important;
+    border: 1px solid var(--rule) !important;
+    border-radius: 3px !important;
+  }
+  #waline .wl-header {
+    border-bottom: 1px solid var(--rule) !important;
+  }
+  #waline .wl-editor {
+    background: #1a1612 !important;
+    border: 1px solid var(--rule) !important;
+    color: var(--paper) !important;
+    min-height: 120px;
+  }
+  #waline .wl-editor:focus { border-color: var(--red) !important; }
+  #waline .wl-input {
+    background: #1a1612 !important;
+    border: 1px solid var(--rule) !important;
+    color: var(--paper) !important;
+  }
+  #waline .wl-input::placeholder { color: #777 !important; }
+  #waline .wl-input:focus { border-color: var(--red) !important; }
+  #waline .wl-btn-primary {
+    background: var(--red) !important;
+    border-color: var(--red) !important;
+  }
+  #waline .wl-btn-primary:hover {
+    background: #a00018 !important;
+  }
+  #waline .wl-comment { color: #ccc !important; }
+  #waline .wl-text {
+    color: #ccc !important;
+    line-height: 1.8 !important;
+  }
+  #waline .wl-nick { color: var(--paper) !important; }
+  #waline .wl-meta { color: #666 !important; }
+  #waline .wl-sort { color: #666 !important; }
+  #waline .wl-count { color: var(--paper) !important; }
+  #waline .wl-divider { border-color: var(--rule) !important; }
+  #waline .wl-action-icon { color: #666 !important; }
+  #waline .wl-action-icon:hover { color: var(--paper) !important; }
+  #waline .wl-reaction { background: #1a1612 !important; border: 1px solid var(--rule) !important; }
+  #waline .wl-reaction-title { color: var(--paper) !important; }
+  #waline .wl-reaction-vote { color: #888 !important; }
+  #waline .wl-reaction-list button { color: #aaa !important; }
+  #waline .wl-reaction-list button:hover { color: var(--paper) !important; }
+
+  /* ===== SHARE BAR ===== */
+  .share-bar {
+    max-width: 860px;
+    margin: 32px auto 0;
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  @media (max-width: 768px) {
+    .share-bar { padding: 0 20px; }
+  }
+  .share-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #777;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 14px;
+    border-radius: 2px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-decoration: none;
+    color: #888;
+    border: 1px solid var(--rule);
+    transition: all 0.15s;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .share-btn:hover {
+    color: var(--paper);
+    border-color: #444;
+    background: rgba(255,255,255,0.03);
+  }
+  .share-btn.weibo:hover { border-color: #e6162d; color: #e6162d; }
+  .share-btn.wechat:hover { border-color: #07c160; color: #07c160; }
+  .share-btn.qq:hover { border-color: #12b7f5; color: #12b7f5; }
+  .share-btn.twitter:hover { border-color: #1da1f2; color: #1da1f2; }
+  .share-btn.copy-link { cursor: pointer; }
+  .share-btn.copy-link.copied {
+    border-color: #07c160;
+    color: #07c160;
+  }
+
+  /* ===== SUBMISSION FORM ===== */
+  .submit-form-wrap {
+    max-width: 600px;
+    margin: 32px auto;
+    background: #161310;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 32px;
+    position: relative;
+  }
+  .submit-form-wrap::before {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 48px;
+    background: var(--red);
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .submit-form-wrap .form-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--paper);
+    margin-bottom: 8px;
+  }
+  .submit-form-wrap .form-desc {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  .submit-form-wrap label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .submit-form-wrap input,
+  .submit-form-wrap textarea,
+  .submit-form-wrap select {
+    width: 100%;
+    background: #1a1612;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    color: var(--paper);
+    font-family: var(--font-serif);
+    font-size: 14px;
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    transition: border-color 0.15s;
+  }
+  .submit-form-wrap input:focus,
+  .submit-form-wrap textarea:focus,
+  .submit-form-wrap select:focus {
+    border-color: var(--red);
+    outline: none;
+  }
+  .submit-form-wrap textarea { min-height: 160px; resize: vertical; }
+  .submit-form-wrap select option { background: #1a1612; }
+  .submit-form-wrap .form-submit {
+    display: inline-block;
+    padding: 10px 32px;
+    background: var(--red);
+    color: var(--paper);
+    border: none;
+    border-radius: 2px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .submit-form-wrap .form-submit:hover { background: #a00018; }
+  .submit-form-wrap .form-note {
+    font-size: 12px;
+    color: #777;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    line-height: 1.7;
+  }
+
+  /* ===== RELATED READING ===== */
+  .related-reading {
+    max-width: 860px;
+    margin: 48px auto 0;
+    padding: 0 48px;
+  }
+  .related-reading::before {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--rule);
+    margin-bottom: 28px;
+  }
+  .related-heading {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .related-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+  }
+  .related-item {
+    background: #161310;
+    padding: 18px 20px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .related-item:hover {
+    background: #1e1a16;
+  }
+  .related-item-title {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+  .related-item:hover .related-item-title {
+    color: var(--paper);
+  }
+  .related-item-cat {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: #777;
+    text-transform: uppercase;
+  }
+
+  /* ===== ACCESSIBILITY ===== */
+  /* Skip to content link for keyboard users */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    background: var(--red);
+    color: var(--paper);
+    padding: 8px 16px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    z-index: 99999;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: top 0.2s;
+  }
+  .skip-link:focus {
+    top: 8px;
+  }
+  /* Focus indicators */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 2px;
+  }
+  /* Ensure minimum contrast for interactive elements */
+  .markdown-section a:focus { color: var(--paper) !important; }
+  /* Image alt text styling for missing images */
+  .markdown-section img {
+    background: #1a1612;
+    border: 1px solid var(--rule);
   }
   </style>
 </head>
 <body>
+  <a href="#app" class="skip-link" aria-label="跳到正文内容">跳到正文</a>
   <div class="reading-progress" id="readingProgress"></div>
   <div id="app"></div>
   <script>
@@ -265,7 +659,11 @@
       search: {
         placeholder: '搜索文章…',
         noData: '没有找到相关内容',
-        depth: 3
+        paths: 'auto',
+        depth: 6,
+        maxAge: 86400000,
+        namespace: 'prison-art-search',
+        hideOtherSidebarContent: false
       },
       auto2top: true,
       homepage: "00.md",
@@ -277,9 +675,257 @@
             nav.className = 'app-nav';
             nav.innerHTML =
               '<a href="#/">首页</a>' +
+              '<a href="#/contribute">投稿</a>' +
               '<a href="#/1.1">全部文章</a>' +
-              '<a href="https://map.prison-art.cn" class="map-link" target="_blank">🗺 世界监狱地图</a>';
+              '<a href="https://map.prison-art.cn" class="map-link" target="_blank" rel="noopener noreferrer" aria-label="世界监狱博物馆地图">🗺 世界监狱地图</a>';
             document.body.insertBefore(nav, document.getElementById('app'));
+          });
+
+          hook.beforeEach(function(content) {
+            // SEO: Update title and meta description per page
+            var path = vm.route.path.replace(/^#\/?/, '');
+            var title = '狱望 Prison Art';
+            var desc = '汇集监狱与人文艺术相关的内容，探讨人性、救赎与自由。';
+
+            // Extract first H1 as title
+            var h1Match = content.match(/^#\s+(.+)$/m);
+            if (h1Match) {
+              title = h1Match[1].trim() + ' — 狱望 Prison Art';
+              desc = h1Match[1].trim();
+            }
+
+            // Extract first paragraph or blockquote as description
+            var descMatch = content.match(/^(?:>|\s*)(.+?)[\n$]/m);
+            if (descMatch && descMatch[1].length > 10) {
+              desc = descMatch[1].trim().substring(0, 160);
+            }
+
+            // Update document title
+            document.title = title;
+
+            // Update meta description
+            var metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.setAttribute('content', desc);
+
+            // Update OG tags
+            setMeta('og:title', title);
+            setMeta('og:description', desc);
+            setMeta('og:url', window.location.href.split('#')[0] + '#' + vm.route.path);
+            setMeta('twitter:title', title);
+            setMeta('twitter:description', desc);
+
+            // Update canonical
+            var canonical = document.querySelector('link[rel="canonical"]');
+            if (canonical) {
+              canonical.href = window.location.href.split('#')[0] + '#' + vm.route.path;
+            }
+
+            return content;
+          });
+
+          function setMeta(prop, content) {
+            var el = document.querySelector('meta[property="' + prop + '"]') ||
+                     document.querySelector('meta[name="' + prop + '"]');
+            if (el) el.setAttribute('content', content);
+          }
+
+          hook.doneEach(function() {
+            // Skip on homepage (00.md), category pages, contribute
+            var path = vm.route.path.replace(/^#\/?/, '');
+            if (path === '' || path === '/' || path === '00' ||
+                path.startsWith('cat-') || path === 'contribute' || path === '_sidebar') return;
+
+            var section = document.querySelector('.markdown-section');
+            if (!section) return;
+
+            // ===== ACCESSIBILITY: Add alt text to images without it =====
+            var pageSlug = path;
+            section.querySelectorAll('img:not([alt])').forEach(function(img, idx) {
+              var src = img.getAttribute('src') || '';
+              var filename = src.split('/').pop().split('.')[0] || '';
+              img.setAttribute('alt', pageSlug + ' 配图 ' + (idx + 1));
+              img.setAttribute('role', 'img');
+            });
+
+            // ===== SHARE BAR =====
+            if (!section.querySelector('.share-bar')) {
+              var pageUrl = window.location.href.split('#')[0] + '#' + vm.route.path;
+              var pageTitle = document.title || '狱望 Prison Art';
+
+              var shareDiv = document.createElement('div');
+              shareDiv.className = 'share-bar';
+              shareDiv.setAttribute('role', 'navigation');
+              shareDiv.setAttribute('aria-label', '分享按钮');
+              shareDiv.innerHTML =
+                '<span class="share-label">Share</span>' +
+                '<a class="share-btn weibo" href="https://service.weibo.com/share/share.php?url=' + encodeURIComponent(pageUrl) + '&title=' + encodeURIComponent(pageTitle) + '" target="_blank" rel="noopener noreferrer" aria-label="分享到微博">微博</a>' +
+                '<a class="share-btn wechat" id="wxShareBtn" href="#" role="button" aria-label="分享到微信">微信</a>' +
+                '<a class="share-btn qq" href="https://connect.qq.com/widget/shareqq/index.html?url=' + encodeURIComponent(pageUrl) + '&title=' + encodeURIComponent(pageTitle) + '" target="_blank" rel="noopener noreferrer" aria-label="分享到QQ">QQ</a>' +
+                '<a class="share-btn twitter" href="https://twitter.com/intent/tweet?url=' + encodeURIComponent(pageUrl) + '&text=' + encodeURIComponent(pageTitle) + '" target="_blank" rel="noopener noreferrer" aria-label="分享到Twitter">Twitter</a>' +
+                '<span class="share-btn copy-link" id="copyLinkBtn" role="button" tabindex="0" aria-label="复制页面链接">复制链接</span>';
+              section.appendChild(shareDiv);
+
+              // WeChat QR popup
+              var wxBtn = document.getElementById('wxShareBtn');
+              if (wxBtn) {
+                wxBtn.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  var existing = document.getElementById('wx-qr-modal');
+                  if (existing) { existing.remove(); return; }
+                  var modal = document.createElement('div');
+                  modal.id = 'wx-qr-modal';
+                  modal.setAttribute('role', 'dialog');
+                  modal.setAttribute('aria-modal', 'true');
+                  modal.setAttribute('aria-label', '微信分享');
+                  modal.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:99999;display:flex;align-items:center;justify-content:center;cursor:pointer;';
+                  modal.innerHTML =
+                    '<div style="background:#161310;border:1px solid #2a2520;border-radius:4px;padding:32px;text-align:center;max-width:320px;cursor:default;">' +
+                    '<div style="font-family:monospace;font-size:10px;letter-spacing:0.2em;color:#c8001e;margin-bottom:16px;">WECHAT SHARE</div>' +
+                    '<div style="font-size:14px;color:#ccc;margin-bottom:16px;">微信扫码分享</div>' +
+                    '<div style="width:200px;height:200px;margin:0 auto;background:#1a1612;display:flex;align-items:center;justify-content:center;color:#555;font-size:12px;">' +
+                    '<canvas id="wxQRCanvas" width="180" height="180"></canvas>' +
+                    '</div>' +
+                    '<div style="margin-top:16px;font-size:12px;color:#555;">点击外部关闭</div>' +
+                    '</div>';
+                  document.body.appendChild(modal);
+                  modal.addEventListener('click', function(ev) {
+                    if (ev.target === modal) modal.remove();
+                  });
+                  var canvas = document.getElementById('wxQRCanvas');
+                  if (canvas) {
+                    var ctx = canvas.getContext('2d');
+                    ctx.fillStyle = '#1a1612';
+                    ctx.fillRect(0, 0, 180, 180);
+                    ctx.fillStyle = '#f0ebe0';
+                    ctx.font = '11px monospace';
+                    ctx.textAlign = 'center';
+                    var lines = [];
+                    var url = pageUrl;
+                    for (var i = 0; i < url.length; i += 28) {
+                      lines.push(url.substring(i, i + 28));
+                    }
+                    lines.forEach(function(line, idx) {
+                      ctx.fillText(line, 90, 60 + idx * 16);
+                    });
+                    ctx.fillStyle = '#666';
+                    ctx.font = '10px monospace';
+                    ctx.fillText('请复制链接发送至微信', 90, 160);
+                  }
+                });
+              }
+
+              // Copy link (with keyboard support)
+              var copyBtn = document.getElementById('copyLinkBtn');
+              if (copyBtn) {
+                function doCopy() {
+                  navigator.clipboard.writeText(pageUrl).then(function() {
+                    copyBtn.textContent = '已复制 ✓';
+                    copyBtn.classList.add('copied');
+                    copyBtn.setAttribute('aria-label', '链接已复制');
+                    setTimeout(function() {
+                      copyBtn.textContent = '复制链接';
+                      copyBtn.classList.remove('copied');
+                      copyBtn.setAttribute('aria-label', '复制页面链接');
+                    }, 2000);
+                  });
+                }
+                copyBtn.addEventListener('click', doCopy);
+                copyBtn.addEventListener('keydown', function(e) {
+                  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); doCopy(); }
+                });
+              }
+            }
+
+            // ===== RELATED READING =====
+            if (!section.querySelector('.related-reading') && typeof ARTICLE_INDEX !== 'undefined') {
+              var currentSlug = path.replace(/\.md$/, '');
+              var currentArticle = ARTICLE_INDEX.find(function(a) { return a.slug === currentSlug; });
+              if (currentArticle && currentArticle.categories.length > 0) {
+                var related = ARTICLE_INDEX.filter(function(a) {
+                  if (a.slug === currentSlug) return false;
+                  return a.categories.some(function(c) {
+                    return currentArticle.categories.indexOf(c) !== -1;
+                  });
+                }).slice(0, 6);
+
+                if (related.length > 0) {
+                  var relDiv = document.createElement('div');
+                  relDiv.className = 'related-reading';
+                  relDiv.setAttribute('role', 'complementary');
+                  relDiv.setAttribute('aria-label', '相关阅读');
+
+                  var catLabel = currentArticle.categories.join(' / ');
+                  var html = '<div class="related-heading">相关阅读 · ' + catLabel + '</div>';
+                  html += '<div class="related-grid">';
+                  related.forEach(function(a) {
+                    html += '<a class="related-item" href="#/' + a.slug + '">' +
+                      '<div class="related-item-title">' + a.title + '</div>' +
+                      '<div class="related-item-cat">' + (a.categories[0] || '') + '</div>' +
+                      '</a>';
+                  });
+                  html += '</div>';
+                  relDiv.innerHTML = html;
+
+                  // Insert before share bar
+                  var shareBar = section.querySelector('.share-bar');
+                  if (shareBar) {
+                    section.insertBefore(relDiv, shareBar);
+                  } else {
+                    section.appendChild(relDiv);
+                  }
+                }
+              }
+            }
+
+            // ===== WALINE COMMENTS =====
+            var walineEl = document.querySelector('#waline-comment');
+            if (!walineEl) {
+              walineEl = document.createElement('div');
+              walineEl.id = 'waline-comment';
+              walineEl.className = 'waline-anchor';
+              walineEl.setAttribute('role', 'complementary');
+              walineEl.setAttribute('aria-label', '评论区');
+
+              var shareBar = section.querySelector('.share-bar');
+              if (shareBar && shareBar.parentNode) {
+                shareBar.parentNode.insertBefore(walineEl, shareBar.nextSibling);
+              } else if (section) {
+                section.appendChild(walineEl);
+              }
+            }
+
+            if (typeof Waline !== 'undefined') {
+              walineEl.innerHTML = '';
+              Waline.init({
+                el: walineEl,
+                serverURL: 'https://your-waline-server.vercel.app',
+                lang: 'zh-CN',
+                dark: 'auto',
+                login: 'force',
+                wordLimit: [10, 2000],
+                requiredMeta: ['nick'],
+                meta: ['nick', 'mail'],
+                locale: {
+                  admin: '管理员',
+                  sticky: '置顶',
+                  word: '字',
+                  wordLimit: '评论字数需在 %s 到 %s 字之间',
+                  comment: '评论',
+                  sofa: '还没有评论，来说点什么吧…',
+                  submit: '提交',
+                  replies: '回复',
+                  cancelReply: '取消回复',
+                  preview: '预览',
+                  edit: '编辑',
+                  delete: '删除',
+                  approved: '通过',
+                  waiting: '待审核',
+                  rejected: '已拒绝',
+                },
+                moderation: 'manual',
+                reaction: true,
+              });
+            }
           });
         }
       ]
@@ -287,13 +933,24 @@
   </script>
   <script src="//unpkg.com/docsify@4/lib/docsify.min.js"></script>
   <script src="//unpkg.com/docsify@4/lib/plugins/search.min.js"></script>
+  <script src="//unpkg.com/@waline/client@3/dist/waline.umd.js"></script>
+  <script src="docs/article-index.js"></script>
   <script>
-    // Lazy loading for dynamically rendered images
+    // Lazy loading + accessibility alt text for dynamically rendered images
     (function() {
+      var imgCounter = 0;
       function addLazyLoad(root) {
         root.querySelectorAll('img:not([loading])').forEach(function(img) {
           img.setAttribute('loading', 'lazy');
           img.setAttribute('decoding', 'async');
+          // Add alt text if missing
+          if (!img.getAttribute('alt')) {
+            imgCounter++;
+            var src = img.getAttribute('src') || '';
+            var filename = src.split('/').pop().split('.')[0] || '';
+            img.setAttribute('alt', filename ? filename.replace(/[-_]/g, ' ') : '页面配图 ' + imgCounter);
+            img.setAttribute('role', 'img');
+          }
         });
       }
       // Observe Docsify dynamic content
