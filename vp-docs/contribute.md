@@ -6,7 +6,7 @@
   <div class="form-title">提交稿件</div>
   <div class="form-desc">请填写以下信息。稿件内容需与监狱人文艺术相关，我们将在 7 个工作日内完成审核并以邮件通知结果。</div>
 
-  <form id="submitForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+  <form id="submitForm" action="https://formspree.io/f/maqgpqkr" method="POST">
     <label>署名 / 笔名 *</label>
     <input type="text" name="author" placeholder="你的名字或笔名" required>
 
